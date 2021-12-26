@@ -16,8 +16,10 @@ export class FirstPageComponent implements OnInit {
   @ViewChild('canvas', {static: true})
   canvas!: ElementRef<HTMLCanvasElement>;
 
-  circles: Circle[] = [];
-  circles2: Circle[] = [];
+  circlesGoingUp: Circle[] = [];
+  circlesGoingDown: Circle[] = [];
+
+  moving = true;
 
   constructor(private ngZone: NgZone) {
   }
@@ -27,29 +29,41 @@ export class FirstPageComponent implements OnInit {
     this.canvas!.nativeElement.width = this.WIDTH;
     this.canvas!.nativeElement.height = this.HEIGHT;
     this.createCircles();
-    this.circles.forEach(circle => circle.setDirectionUp())
+    this.circlesGoingUp.forEach(circle => circle.setDirectionUp())
     this.createCircles2();
-    this.circles2.forEach(circle => circle.setDirectionDown())
+    this.circlesGoingDown.forEach(circle => circle.setDirectionDown())
+  }
 
-    this.setFontParamiter();
+  start(): void {
+    this.moving = true;
+
     this.ctx!.fillStyle = "red";
     this.ngZone.runOutsideAngular(() => {
       const loop = () => {
-        // this.paintCanvas('white');
-        this.circles.forEach(circle => circle.update())
-        this.circles.forEach(circle => circle.draw(this.ctx!))
 
-        this.circles2.forEach(circle => circle.update())
-        this.circles2.forEach(circle => circle.draw(this.ctx!))
-        this.circles2.forEach(circle => circle.stop(this.HEIGHT))
+        if (this.moving) {
+          this.circlesGoingUp.forEach(circle => circle.update())
+          this.circlesGoingUp.forEach(circle => circle.draw(this.ctx!))
+          // this.circles.forEach(circle => circle.returnUp(this.HEIGHT))
 
-        this.ctx!.fillStyle = "white";
-        this.ctx!.fillText("GRANICA", this.WIDTH * 0.5,this.HEIGHT * 0.5);
+          this.circlesGoingDown.forEach(circle => circle.update())
+          this.circlesGoingDown.forEach(circle => circle.draw(this.ctx!))
+          this.circlesGoingDown.forEach(circle => circle.stopDown(this.HEIGHT))
+
+          // this.setFontParamiter();
+          // this.ctx!.fillStyle = "white";
+          // this.ctx!.fillText("GRANICA", this.WIDTH * 0.5, this.HEIGHT * 0.5);
+
+          this.setFontParamiter();
+          this.ctx!.fillStyle = "white";
+          this.ctx!.fillText("GRANICA", this.WIDTH * 0.4, this.HEIGHT * 0.6);
+        }
 
         requestAnimationFrame(loop);
       };
       requestAnimationFrame(loop);
     });
+
   }
 
   private setFontParamiter() {
@@ -58,14 +72,14 @@ export class FirstPageComponent implements OnInit {
 
   private startDeploy(): void {
     this.paintCanvas('white');
-    this.circles.forEach(circle => circle.draw(this.ctx!))
+    this.circlesGoingUp.forEach(circle => circle.draw(this.ctx!))
   }
 
   private createCircles(): void {
     for (let i = 0; i < 40; i++) {
       const x = Utils.randomRange(0, this.WIDTH!);
       const y = Utils.randomRange(0, this.HEIGHT!);
-      this.circles.push(new Circle(x, y));
+      this.circlesGoingUp.push(new Circle(x, y));
     }
   }
 
@@ -73,7 +87,7 @@ export class FirstPageComponent implements OnInit {
     for (let i = 0; i < 40; i++) {
       const x = Utils.randomRange(0, this.WIDTH!);
       const y = Utils.randomRange(0, this.HEIGHT!);
-      this.circles2.push(new Circle(x, y));
+      this.circlesGoingDown.push(new Circle(x, y));
     }
   }
 
@@ -85,5 +99,9 @@ export class FirstPageComponent implements OnInit {
   private paintStripeCanvas(color: string) {
     this.ctx!.fillStyle = color;
     this.ctx!.fillRect(0, 0, this.WIDTH, this.HEIGHT * 0.1);
+  }
+
+  stop(): void {
+    this.moving = false;
   }
 }

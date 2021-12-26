@@ -41,9 +41,24 @@ export class Circle {
     this.radius! += 0.01;
   }
 
-  stop(height: number): void {
+  stopDown(height: number): void {
     if (this.pos.y >= height - 50) {
       this.vel.y = 0;
+      if(this.radius! > 0.03){
+        this.radius! -= 0.02;
+      }
+    }
+  }
+
+  returnUp(height: number): void {
+    if (this.pos.y <= -10) {
+      this.vel.y *= -1;
+    }
+    if (this.pos.y >= height -40) {
+      this.vel.y *= -1;
+      if(this.radius! > 0.06){
+        this.radius! -= 0.05;
+      }
     }
   }
 }
