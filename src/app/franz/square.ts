@@ -14,31 +14,27 @@ export class Square {
   squareHeight = 5
   counter = 0
   bounced = false;
+  color: string;
 
 
-  constructor(x: number, y: number) {
+  constructor(x: number, y: number, color: string) {
     this.posOne = new Vector(x, y);
-    this.posTwo = new Vector(Math.random(), Math.random());
+    this.posTwo = new Vector(0, Math.random());
     this.sizeCorector = Utils.randomRange(0.5, 1);
     this.moveCorector = Utils.randomRange(0.5, 1);
     this.angleCorector = Utils.randomRange(0.5, 2);
     this.angle = Utils.randomRange(0.2, 1);
+    this.color = color;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
 
     ctx.save();
 
-    ctx.fillStyle = "red";
     ctx.translate(this.posOne.x, this.posOne.y);
     ctx.rotate(this.angle + this.angleCorector);
-    ctx.lineWidth = 0;
-    ctx.fillStyle = "black";
+    ctx.fillStyle = this.color;
     ctx.fillRect(0, 0, this.squareWidth * this.sizeCorector, this.squareHeight * this.sizeCorector);
-    ctx.fillStyle = "red";
-    ctx.fillRect(0, 0, this.squareWidth * this.sizeCorector, (this.squareHeight - 4) * this.sizeCorector);
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, (this.squareWidth - 4) * this.sizeCorector, (this.squareHeight - 4) * this.sizeCorector);
 
     ctx.restore();
   }

@@ -6,6 +6,7 @@ import {CircleComponent} from "./circle/circle.component";
 import {FirstPageComponent} from "./first-page-rain/first-page.component";
 import {SecondPageComponent} from "./second-page-squers/second-page.component";
 import {ThirdPageComponent} from "./third-page-grows/third-page.component";
+import {FranzComponent} from "./franz/franz.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'third-component', component: ThirdPageComponent },
   { path: 'flower', component: FlowerComponent },
   { path: 'circle', component: CircleComponent },
+  { path: 'franz', component: FranzComponent },
 
 ];
 

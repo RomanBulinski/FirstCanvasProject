@@ -12,6 +12,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import {MatCardModule} from "@angular/material/card";
 import { CircleComponent } from './circle/circle.component';
 import { FlowerComponent } from './flower/flower.component';
+import { FranzComponent } from './franz/franz.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FlowerComponent } from './flower/flower.component';
     ThirdPageComponent,
     NavigationComponent,
     CircleComponent,
-    FlowerComponent
+    FlowerComponent,
+    FranzComponent
   ],
   imports: [
     BrowserModule,

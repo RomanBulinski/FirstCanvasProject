@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+Deploy to Firebase
+
+1)npm install -g firebase-tools //w teczce projektu
+2)C:\Windows\System32>firbase login
+3)firebase init //w teczce projektu
+4) 
+5) // w teczce projektu
+
+Project Console: https://console.firebase.google.com/project/canvasproject-6648d/overview
+Hosting URL: https://canvasproject-6648d.web.app
