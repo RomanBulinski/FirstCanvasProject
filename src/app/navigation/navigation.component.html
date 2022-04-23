@@ -1,30 +1,52 @@
 <mat-card>
-  <nav>
-    <div fxLayout="row" fxLayoutGap="20px">
-      <button mat-button>
-        <a routerLink="/first-component"
-           routerLinkActive="active">Rain</a>
-      </button>
-      <button mat-button>
-        <a routerLink="/second-component"
-           routerLinkActive="active">Second Component</a>
-      </button>
-      <button mat-button>
-        <a routerLink="/third-component"
-           routerLinkActive="active">Grow</a>
-      </button>
-      <button mat-button>
-        <a routerLink="/flower"
-           routerLinkActive="active">Flower</a>
-      </button>
-      <button mat-button>
-        <a routerLink="/circle"
-           routerLinkActive="active">Circle</a>
-      </button>
-      <button mat-button>
-        <a routerLink="/franz"
-           routerLinkActive="active">Franz Kafka</a>
-      </button>
-    </div>
-  </nav>
+  <mat-card-title><h2>Angular Canvas Art</h2></mat-card-title>
+  <mat-card-actions>
+    <nav>
+      <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
+
+        <mat-button-toggle value="1">
+          <button mat-raised-button>
+            <a routerLink="/first-component"
+               routerLinkActive="active">Rain</a>
+          </button>
+        </mat-button-toggle>
+
+        <mat-button-toggle value="2">
+          <button mat-raised-button>
+            <a routerLink="/second-component"
+               routerLinkActive="active">Second Component</a>
+          </button>
+        </mat-button-toggle>
+
+        <mat-button-toggle value="3">
+          <button mat-raised-button>
+            <a routerLink="/third-component"
+               routerLinkActive="active">Grow</a>
+          </button>
+        </mat-button-toggle>
+
+        <mat-button-toggle value="4">
+          <button mat-raised-button>
+            <a routerLink="/flower"
+               routerLinkActive="active">Flower</a>
+          </button>
+        </mat-button-toggle>
+
+        <mat-button-toggle value="5">
+          <button mat-raised-button>
+            <a routerLink="/circle"
+               routerLinkActive="active">Circle</a>
+          </button>
+        </mat-button-toggle>
+
+        <mat-button-toggle value="6">
+          <button mat-raised-button>
+            <a routerLink="/franz"
+               routerLinkActive="active">Franz Kafka</a>
+          </button>
+        </mat-button-toggle>
+
+      </mat-button-toggle-group>
+    </nav>
+  </mat-card-actions>
 </mat-card>

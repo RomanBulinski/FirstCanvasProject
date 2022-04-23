@@ -114,34 +114,46 @@ export class FranzComponent implements OnInit {
     }
   }
 
-
-  start2(): void {
+  getPicture(): void {
     this.squares.forEach(square => square.draw(this.ctx!))
   }
 
  move(): void {
-
    this.ngZone.runOutsideAngular(() => {
      const loop = () => {
-
        // this.fillCanvas();
-
        if (this.moving) {
-         this.squares.forEach(square => square.move360())
-         // this.squares.forEach(square => square.rotateAction())
-         this.squares.forEach(square => square.resize())
+         this.squares.forEach(square => square.move())
+         this.squares.forEach(square => square.rotateAction())
          this.squares.forEach(square => square.draw(this.ctx!))
          // this.squares.forEach(square => square.bounce(this.WIDTH, this.HEIGHT))
          this.squares.forEach(square => square.eraseSquare())
        }
-
        requestAnimationFrame(loop);
      };
      requestAnimationFrame(loop);
    });
-
   }
 
+  raise(): void {
+    this.ngZone.runOutsideAngular(() => {
+      const loop = () => {
+        // this.fillCanvas();
+        if (this.moving) {
+          this.squares.forEach(square => square.up())
+          this.squares.forEach(square => square.draw(this.ctx!))
+        }
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    });
+  }
 
+  private fillCanvas(): void {
+    this.ctx!.globalAlpha = 0.01;
+    this.ctx!.fillStyle = 'white';
+    this.ctx!.fillRect(0, 0, this.WIDTH, this.HEIGHT);
+    this.ctx!.globalAlpha = 1;
+  }
 
 }

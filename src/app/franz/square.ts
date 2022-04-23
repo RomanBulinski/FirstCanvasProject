@@ -20,7 +20,8 @@ export class Square {
   constructor(x: number, y: number, color: string) {
     this.posOne = new Vector(x, y);
     this.posTwo = new Vector(0, Math.random());
-    this.sizeCorector = Utils.randomRange(0.5, 1);
+    // this.sizeCorector = Utils.randomRange(0.5, 1);
+    this.sizeCorector = 1
     this.moveCorector = Utils.randomRange(0.5, 1);
     this.angleCorector = Utils.randomRange(0.5, 2);
     this.angle = Utils.randomRange(0.2, 1);
@@ -28,22 +29,41 @@ export class Square {
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
-
     ctx.save();
-
     ctx.translate(this.posOne.x, this.posOne.y);
     ctx.rotate(this.angle + this.angleCorector);
     ctx.fillStyle = this.color;
     ctx.fillRect(0, 0, this.squareWidth * this.sizeCorector, this.squareHeight * this.sizeCorector);
-
     ctx.restore();
   }
 
-  move360() {
+  raiseCounter = 0;
+  isUp = true;
+
+  up(): void {
+    if (this.isUp) {
+      this.posOne.y -= 0.1;
+      this.raiseCounter -= 1;
+    }
+    if (this.raiseCounter === -1000) {
+      this.raiseCounter = 0;
+      this.isUp = false
+    }
+    if (!this.isUp) {
+      this.posOne.y += 0.1;
+      this.raiseCounter += 1;
+    }
+    if (this.raiseCounter === 1000) {
+      this.raiseCounter = 0;
+      this.isUp = true
+    }
+  }
+
+  move() {
     this.moveCorector += 0.02;
     this.posOne.x += this.posTwo.x;
     this.posOne.y += this.posTwo.y;
-    if(this.bounced === true){
+    if (this.bounced === true) {
       this.counter += 0.02
     }
   }
@@ -52,31 +72,9 @@ export class Square {
     this.angle += 0.02;
   }
 
-  resize(){
+  resize() {
     this.squareWidth += 0.1
     this.squareHeight += 0.1
-  }
-
-  bounce(width: number, height: number) {
-
-
-      if (this.posOne.y >= height - 80) {
-        this.posTwo.y *= -1;
-        this.bounced = true;
-      }
-      if (this.posOne.y <= 80) {
-        this.posTwo.y *= -1;
-        this.bounced = true;
-      }
-      if (this.posOne.x >= width - 80) {
-        this.posTwo.x *= -1;
-        this.bounced = true;
-      }
-      if (this.posOne.x <= 80) {
-        this.posTwo.x *= -1;
-        this.bounced = true;
-      }
-
   }
 
   eraseSquare() {

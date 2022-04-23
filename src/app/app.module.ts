@@ -13,6 +13,8 @@ import {MatCardModule} from "@angular/material/card";
 import { CircleComponent } from './circle/circle.component';
 import { FlowerComponent } from './flower/flower.component';
 import { FranzComponent } from './franz/franz.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FranzComponent } from './franz/franz.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

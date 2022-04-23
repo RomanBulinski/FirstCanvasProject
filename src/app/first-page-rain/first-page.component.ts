@@ -1,6 +1,7 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {Circle} from "../Elements/circle";
 import {Utils} from "../Utils/utils";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-first-page',
@@ -20,6 +21,7 @@ export class FirstPageComponent implements OnInit {
   circlesGoingDown: Circle[] = [];
 
   moving = true;
+  buttonColor: ThemePalette = 'primary';
 
   constructor(private ngZone: NgZone) {
   }
